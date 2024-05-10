@@ -17,7 +17,7 @@ import {
 export default function App() {
   const [facing, setFacing] = useState("back" as CameraType);
   const [permission, requestPermission] = useCameraPermissions();
-  const cameraRef = useRef<LegacyRef<CameraView> | undefined>(null);
+  const cameraRef = useRef<CameraView>(null);
   const [video, setVideo] = useState(null);
   const [recording, setRecording] = useState(false);
   const [cameraText, setCameraText] = useState("Record Camera" as string);
@@ -76,7 +76,7 @@ export default function App() {
           console.log("Platform.OS ", Platform.OS === "android");
 
           localVid = await cameraRef.current.recordAsync({
-            maxDuration: Platform.OS === "android" ? 5000 : 5,
+            maxDuration: 5,
             //quality: Platform.OS === 'android' ? Camera.Constants.VideoQuality['480p'] : Camera.Constants.VideoQuality['480p'],
             quality: "480p",
             //quality: "4:3",
