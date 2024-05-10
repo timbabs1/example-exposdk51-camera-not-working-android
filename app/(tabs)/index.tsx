@@ -73,11 +73,13 @@ export default function App() {
         if (!recording) {
           setRecording(true);
           setCameraText("Stop Recording");
+          console.log("Platform.OS ", Platform.OS === "android");
+
           localVid = await cameraRef.current.recordAsync({
-            maxDuration: 5,
+            maxDuration: Platform.OS === "android" ? 5000 : 5,
             //quality: Platform.OS === 'android' ? Camera.Constants.VideoQuality['480p'] : Camera.Constants.VideoQuality['480p'],
-            //quality: '480p',
-            quality: "4:3",
+            quality: "480p",
+            //quality: "4:3",
             //mirror: type === 'front' ? true : false,
           });
           setVideo(localVid);
